@@ -47,7 +47,7 @@ public class PersonController {
 	 * @param id : contact Id
 	 * @return : Http status and details of the person
 	 */
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/{contactId}")
 	public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("id") int contactId){
 		PersonData contactData = null;
 		contactData = personService.getPersonDataById(contactId);
@@ -64,7 +64,7 @@ public class PersonController {
 	public ResponseEntity<ResponseDTO> getPersonData(@RequestBody PersonDTO personDTO){
 		PersonData contactData = null;
 		contactData = personService.createPersonData(personDTO);
-		ResponseDTO respDTO = new ResponseDTO("Created AddressBook data Successfully", contactData);
+		ResponseDTO respDTO = new ResponseDTO("Created Person data Successfully", contactData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 	
@@ -86,7 +86,7 @@ public class PersonController {
 	 * @param empId : Person id
 	 * @return : contact id which is deleted
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete/{contactId}")
 	public ResponseEntity<ResponseDTO> deleteAddressBookData(@PathVariable("contactId") int contactId){
 		personService.deletePersonData(contactId);
 		ResponseDTO respDTO = new ResponseDTO("Deleted Person data Successfully", "Deleted id : " +contactId);
