@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import com.bridgelabz.addressbookapp.dto.AddressBookDTO;
 
 import lombok.Data;
+
+/**
+ * @Entity : Class is an entity is mentioned
+ *
+ */
 @Entity
 public @Data class AddressBookModel {
 
@@ -33,9 +38,4 @@ public @Data class AddressBookModel {
 		this.addressBookName = bookDTO.addressBookName;
 	}
 	
-	
-//	@OneToMany(targetEntity = PersonData.class, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "add_id", referencedColumnName = "book_id")
-//	private List<PersonData> personList;
-
 }

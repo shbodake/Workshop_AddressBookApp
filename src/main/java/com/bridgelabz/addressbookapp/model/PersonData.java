@@ -14,9 +14,9 @@ import com.bridgelabz.addressbookapp.dto.PersonDTO;
 import lombok.Data;
 
 /**
- * @Entity : specifies class is entity
+ * @Entity : Class is an entity is mentioned
  * @Table : table name
- * @Data : Auto Generate getters and setters, constructor, toString
+ * Person details
  */
 @Entity
 @Table(name = "person_data")
@@ -29,7 +29,7 @@ public @Data class PersonData {
 	private String fName;
 	private String lName;
 	private String gender;
-	private long phoneNumber;
+	private String phoneNumber;
 	private String email;
 	private String address;
 	private String city;

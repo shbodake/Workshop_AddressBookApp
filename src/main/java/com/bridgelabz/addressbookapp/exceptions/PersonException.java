@@ -1,5 +1,11 @@
 package com.bridgelabz.addressbookapp.exceptions;
 
-public class PersonException {
+/**
+ * custom Exception
+ */
+public class PersonException extends RuntimeException {
+	public PersonException(String message) {
+		super(message);
+	}
 
 }

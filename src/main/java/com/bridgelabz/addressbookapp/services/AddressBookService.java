@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.addressbookapp.dto.AddressBookDTO;
+import com.bridgelabz.addressbookapp.exceptions.PersonException;
 import com.bridgelabz.addressbookapp.model.AddressBookModel;
 import com.bridgelabz.addressbookapp.repository.IAddressBookRepository;
+
+/**
+ * Service layer :Business logic implementation
+ */
 
 @Service
 public class AddressBookService implements IAddressBookService {
@@ -15,9 +20,9 @@ public class AddressBookService implements IAddressBookService {
 	private IAddressBookRepository addressBook;
 
 	/**
-	 * To create address book
+	 * To call post method to create address book
 	 * @param AddressBookDTO
-	 * @return : addressBookData
+	 * @return : addressBookData with addressbookId
 	 */
 	@Override
 	public AddressBookModel createAddressBookData(AddressBookDTO bookDTO) {
@@ -27,9 +32,9 @@ public class AddressBookService implements IAddressBookService {
 	}
 
 	/**
-	 * To update address book by addressbookId 
+	 * To call put method to update address book by addressbookId 
 	 * @param : addressbookId, AddressBookDTO
-	 * @return : addressBookData
+	 * @return : update data of addressBookData
 	 */
 	@Override
 	public AddressBookModel updateAddressBookData(int addressbookId, AddressBookDTO bookDTO) {
@@ -39,8 +44,8 @@ public class AddressBookService implements IAddressBookService {
 	}
 
 	/**
-	 * To get all address book
-	 * @return : addressBookData
+	 * To call get method to get all address book
+	 * @return : addressBookList
 	 */
 	@Override
 	public List<AddressBookModel> getAddressBookData() {
@@ -48,17 +53,18 @@ public class AddressBookService implements IAddressBookService {
 	}
 
 	/**
-	 * To get address book by addressbookId
+	 * To call get method to get address book by addressbookId
 	 * @param : addressbookId
 	 * @return : addressBookData
 	 */
 	@Override
 	public AddressBookModel getAddressBookDataById(int addressbookId) {
-		return addressBook.findById(addressbookId).get();
+		return addressBook.findById(addressbookId).orElseThrow(
+				() -> new PersonException("address book with id " + addressbookId + " does not exist !..."));
 	}
 
 	/**
-	 * To delete address book by addressbookId 
+	 * To call delete method to delete address book by addressbookId 
 	 * @param : addressbookId
 	 * @return : addressBookData
 	 */
