@@ -7,13 +7,13 @@ import com.bridgelabz.addressbookapp.model.PersonData;
 
 public interface IPersonService {
 	
+	PersonData updatePersonDta(int adddressbookId, int personId, PersonDTO personDTO);
+
 	List<PersonData> getPersonData();
-	
-	PersonData getPersonDataById(long id);
-	
-	PersonData createPersonData(PersonDTO personDTO);
-	
-	PersonData updatePersonData(long id,PersonDTO personDTO);
-	
-	void deletePersonData(long id);
+
+	PersonData getPersonDataById(int addressbookId,int personId);
+
+	void deletePersonData(int addressbookId, int id);
+
+	PersonData createPersonData(int adddressbookId, PersonDTO personDTO);
 }

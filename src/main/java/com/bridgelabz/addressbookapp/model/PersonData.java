@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.bridgelabz.addressbookapp.dto.PersonDTO;
@@ -12,20 +14,18 @@ import com.bridgelabz.addressbookapp.dto.PersonDTO;
 import lombok.Data;
 
 /**
- * Persons details
+ * @Entity : specifies class is entity
+ * @Table : table name
  * @Data : Auto Generate getters and setters, constructor, toString
- * @Table : person_data
  */
-
 @Entity
-@Table(name="person_details")
+@Table(name = "person_data")
 public @Data class PersonData {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "personId")
-	
-	private long personId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "person_id")
+	private int personId;
 	private String fName;
 	private String lName;
 	private String gender;
@@ -37,9 +37,16 @@ public @Data class PersonData {
 	private String country;
 	private String profilePic;
 	
-	public PersonData() {}
-	
+	@ManyToOne
+	@JoinColumn(name = "add_id", referencedColumnName = "book_id")
+	private AddressBookModel addressBook;
+
+	public PersonData() {
+		super();
+	}
+
 	public PersonData(PersonDTO personDTO) {
+		super();
 		this.updatePersonData(personDTO);
 	}
 
@@ -54,6 +61,7 @@ public @Data class PersonData {
 		this.state = personDTO.state;
 		this.country = personDTO.country;
 		this.profilePic = personDTO.profilePic;
-		
+
 	}
+
 }
